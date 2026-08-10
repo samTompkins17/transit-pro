@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Palette de marque TransitPro */
+  --color-navy: #0b1f3a;        /* Barre latérale, fonds foncés */
+  --color-primary: #1565c0;     /* Actions, liens, états actifs */
+  --color-primary-dark: #0d47a1; /* Survol des actions */
+  --color-accent: #f57c00;      /* Alertes, retards, mises en avant */
+  --color-accent-dark: #e65100;
+  --color-surface: #f3f5f7;     /* Fond de l'application */
+  --color-ink: #263238;         /* Texte principal */
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-surface text-ink antialiased;
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-xl border border-slate-200 shadow-sm;
+  }
+  .btn, .btn-primary, .btn-secondary, .btn-danger, .btn-success {
+    @apply inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark;
+  }
+  .btn-secondary {
+    @apply bg-white border border-slate-300 text-ink hover:bg-surface;
+  }
+  .btn-danger {
+    @apply bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100;
+  }
+  .btn-success {
+    @apply bg-emerald-600 text-white hover:bg-emerald-700;
+  }
+  .btn-sm {
+    @apply px-2 py-1 text-xs;
+  }
+  .input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-ink placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary;
+  }
+  .label {
+    @apply block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1;
+  }
+  .th {
+    @apply px-4 py-2.5 text-left text-xs font-semibold text-slate-500 uppercase tracking-wide whitespace-nowrap;
+  }
+  .td {
+    @apply px-4 py-2.5 text-sm text-ink align-middle;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap;
+  }
+}
+
+@media print {
+  body * { visibility: hidden; }
+  .print-area, .print-area * { visibility: visible; }
+  .print-area { position: absolute; inset: 0; width: 100%; padding: 24px; }
+  .no-print { display: none !important; }
+}
